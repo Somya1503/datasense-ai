@@ -81,13 +81,13 @@ function NumericBody({ stat }) {
   return (
     <ResponsiveContainer width="100%" height={260}>
       <BarChart data={data} margin={{ top: 10, right: 20, left: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#d6cdb9" />
         <XAxis dataKey="label" tick={{ fontSize: 12 }} />
         <YAxis tickFormatter={formatNumber} tick={{ fontSize: 12 }} />
         <Tooltip formatter={(v) => [formatNumber(v), "Value"]} />
-        <Bar dataKey="value" radius={[3, 3, 0, 0]} maxBarSize={56}>
+        <Bar dataKey="value" radius={[0, 0, 0, 0]} maxBarSize={56}>
           {data.map((d) => (
-            <Cell key={d.label} fill={d.label === "Mean" ? "#0f2a4a" : "#2563eb"} />
+            <Cell key={d.label} fill={d.label === "Mean" ? "#b4492b" : "#1d1b18"} />
           ))}
         </Bar>
       </BarChart>

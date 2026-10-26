@@ -1,4 +1,3 @@
-import { Database, Columns3, AlertCircle, Copy } from "lucide-react";
 import { formatNumber, formatPercent } from "../utils/format";
 
 export default function SummaryCards({ summary, meta }) {
@@ -6,44 +5,38 @@ export default function SummaryCards({ summary, meta }) {
   const missingPct = totalCells ? (summary.total_missing_cells / totalCells) * 100 : 0;
 
   const cards = [
+    { label: "Rows", value: summary.rows, note: "Records in the dataset", cls: "lead" },
     {
-      label: "Total rows", value: summary.rows, icon: Database,
-      note: "Records in the dataset",
-    },
-    {
-      label: "Total columns", value: summary.columns, icon: Columns3,
+      label: "Columns", value: summary.columns,
       note: `${summary.numeric_columns} numeric · ${summary.categorical_columns} categorical`,
+      cls: "sage",
     },
     {
-      label: "Missing cells", value: summary.total_missing_cells, icon: AlertCircle,
+      label: "Missing cells", value: summary.total_missing_cells,
       note: `${formatPercent(missingPct)} of all cells`,
-      flag: summary.total_missing_cells > 0,
+      cls: summary.total_missing_cells > 0 ? "terracotta" : "",
     },
     {
-      label: "Duplicate rows", value: summary.duplicate_rows, icon: Copy,
+      label: "Duplicate rows", value: summary.duplicate_rows,
       note: `${formatPercent(summary.duplicate_percent)} of rows`,
-      flag: summary.duplicate_rows > 0,
+      cls: summary.duplicate_rows > 0 ? "ochre" : "",
     },
   ];
 
   return (
     <div id="overview">
       <div className="cards">
-        {cards.map(({ label, value, icon: Icon, note, flag }) => (
-          <div key={label} className="card kpi">
-            <div className="kpi-top">
-              <span className="kpi-label">{label}</span>
-              <span className={`kpi-icon ${flag ? "warn" : ""}`}><Icon size={18} /></span>
-            </div>
+        {cards.map(({ label, value, note, cls }) => (
+          <div key={label} className={`kpi ${cls}`}>
+            <div className="kpi-label">{label}</div>
             <div className="kpi-value">{formatNumber(value)}</div>
             <div className="kpi-note">{note}</div>
           </div>
         ))}
       </div>
       {meta && (
-        <p className="muted meta-line">
-          Detected encoding: {meta.encoding} · Delimiter:{" "}
-          {meta.delimiter === "\t" ? "tab" : `"${meta.delimiter}"`}
+        <p className="meta-line">
+          Encoding {meta.encoding} · Delimiter {meta.delimiter === "\t" ? "tab" : `"${meta.delimiter}"`}
         </p>
       )}
     </div>

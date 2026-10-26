@@ -1,35 +1,32 @@
-import { Wifi, WifiOff, RefreshCw, FileText, Download } from "lucide-react";
+import { RefreshCw, Download } from "lucide-react";
 
 export default function Header({ title, filename, backendOnline, onReset, onExport }) {
   let label = "Checking API";
   let cls = "checking";
-  let Icon = Wifi;
   if (backendOnline === true) { label = "API online"; cls = "online"; }
-  if (backendOnline === false) { label = "API offline"; cls = "offline"; Icon = WifiOff; }
+  if (backendOnline === false) { label = "API offline"; cls = "offline"; }
 
   return (
-    <header className="header">
-      <div className="header-title">
-        <h1>{title}</h1>
-        {filename && (
-          <p className="file-chip"><FileText size={14} /> {filename}</p>
-        )}
+    <header className="masthead">
+      <div className="masthead-bar">
+        <span className="eyebrow">{filename ? title : "DataSense Research Lab"}</span>
+        <div className="header-actions">
+          <span className={`status-pill ${cls}`}>
+            <span className="dot" aria-hidden="true" /> {label}
+          </span>
+          {onExport && (
+            <button className="btn" onClick={onExport}>
+              <Download size={15} /> Export JSON
+            </button>
+          )}
+          {onReset && (
+            <button className="btn btn-primary" onClick={onReset}>
+              <RefreshCw size={15} /> Upload another file
+            </button>
+          )}
+        </div>
       </div>
-      <div className="header-actions">
-        {onExport && (
-          <button className="btn" onClick={onExport}>
-            <Download size={16} /> Export JSON
-          </button>
-        )}
-        {onReset && (
-          <button className="btn btn-primary" onClick={onReset}>
-            <RefreshCw size={16} /> Upload another file
-          </button>
-        )}
-        <span className={`status-pill ${cls}`}>
-          <Icon size={14} /> {label}
-        </span>
-      </div>
+      <h1>{filename || title}</h1>
     </header>
   );
 }

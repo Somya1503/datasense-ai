@@ -1,17 +1,13 @@
 import { useState } from "react";
-import {
-  BarChart3, LayoutDashboard, ShieldCheck, Tags,
-  Link2, AlertTriangle, Table, Upload,
-} from "lucide-react";
 
 const NAV = [
-  { id: "overview", label: "Overview", icon: LayoutDashboard },
-  { id: "quality", label: "Data Quality", icon: ShieldCheck },
-  { id: "numeric", label: "Numeric Analysis", icon: BarChart3 },
-  { id: "categorical", label: "Categorical Analysis", icon: Tags },
-  { id: "correlations", label: "Correlations", icon: Link2 },
-  { id: "outliers", label: "Outliers", icon: AlertTriangle },
-  { id: "preview", label: "Data Preview", icon: Table },
+  { id: "overview", label: "Overview" },
+  { id: "quality", label: "Data quality" },
+  { id: "numeric", label: "Numeric analysis" },
+  { id: "categorical", label: "Categorical analysis" },
+  { id: "correlations", label: "Correlations" },
+  { id: "outliers", label: "Outliers" },
+  { id: "preview", label: "Data preview" },
 ];
 
 export default function Sidebar({ hasResults, onReset }) {
@@ -24,34 +20,32 @@ export default function Sidebar({ hasResults, onReset }) {
 
   return (
     <aside className="sidebar">
-      <div className="logo">
-        <span className="logo-mark"><BarChart3 size={20} /></span>
-        <div>
-          <div className="logo-name">DataSense AI</div>
-          <div className="logo-sub">Intelligent CSV Analyzer</div>
-        </div>
+      <div className="wordmark">
+        <div className="wordmark-name">Data<em>Sense</em></div>
+        <div className="wordmark-sub">Editorial Data Lab</div>
+        <p className="wordmark-line">A research desk for CSV data: profile, test and read a dataset in one report.</p>
       </div>
 
-      <nav className="nav" aria-label="Main navigation">
-        <div className="nav-label">Workspace</div>
-        <button className="nav-item" onClick={() => { setActive("overview"); onReset(); }}>
-          <Upload size={17} /> <span>New dataset</span>
-        </button>
+      <button className="new-btn" onClick={() => { setActive("overview"); onReset(); }}>
+        <span aria-hidden="true">+</span> New dataset
+      </button>
 
-        <div className="nav-label">Report</div>
-        {NAV.map(({ id, label, icon: Icon }) => (
+      <nav className="toc" aria-label="Report contents">
+        <div className="toc-label">Contents</div>
+        {NAV.map(({ id, label }, i) => (
           <button
             key={id}
-            className={`nav-item ${hasResults && active === id ? "active" : ""}`}
+            className={`toc-item ${hasResults && active === id ? "active" : ""}`}
             disabled={!hasResults}
             onClick={() => go(id)}
           >
-            <Icon size={17} /> <span>{label}</span>
+            <span className="toc-no">{String(i + 1).padStart(2, "0")}</span>
+            <span>{label}</span>
           </button>
         ))}
       </nav>
 
-      <div className="sidebar-foot">DataSense AI · v0.1</div>
+      <div className="sidebar-foot">Vol. 1 · pandas + FastAPI</div>
     </aside>
   );
 }

@@ -2,12 +2,12 @@ import { Link2 } from "lucide-react";
 import Section from "./Section";
 
 function cellStyle(value) {
-  if (value === null || value === undefined) return { background: "#f3f4f6", color: "#6b7280" };
+  if (value === null || value === undefined) return { background: "#ebe4d4", color: "#5f574c" };
   const alpha = Math.min(Math.abs(value), 1) * 0.9;
-  const rgb = value >= 0 ? "37, 99, 235" : "217, 119, 6";
+  const rgb = value >= 0 ? "180, 73, 43" : "109, 95, 142";
   return {
     background: `rgba(${rgb}, ${alpha})`,
-    color: Math.abs(value) > 0.5 ? "#ffffff" : "#111827",
+    color: Math.abs(value) > 0.85 ? "#ffffff" : "#1d1b18",
   };
 }
 
@@ -62,7 +62,7 @@ export default function CorrelationSection({ data }) {
             <span>-1</span>
             <span className="heat-bar" />
             <span>+1</span>
-            <span className="muted">Orange = negative, blue = positive</span>
+            <span className="muted">Lavender = negative, terracotta = positive</span>
           </div>
 
           <h3>Strong relationships (|r| ≥ 0.7)</h3>

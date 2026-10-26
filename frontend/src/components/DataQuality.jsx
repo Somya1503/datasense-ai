@@ -102,19 +102,21 @@ export default function DataQuality({ columns, summary }) {
           ) : (
             <ResponsiveContainer width="100%" height={Math.max(180, withMissing.length * 38)}>
               <BarChart data={withMissing} layout="vertical" margin={{ left: 4, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e5e7eb" />
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#d6cdb9" />
                 <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} />
                 <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 12 }} />
                 <Tooltip formatter={(v, _n, p) => [`${v}% (${p.payload.count} cells)`, "Missing"]} />
-                <Bar dataKey="percent" radius={[0, 3, 3, 0]} barSize={16}>
+                <Bar dataKey="percent" radius={[0, 0, 0, 0]} barSize={16}>
                   {withMissing.map((d) => (
-                    <Cell key={d.name} fill={d.percent >= HIGH_MISSING ? "#b45309" : "#2563eb"} />
+                    <Cell key={d.name} fill={d.percent >= HIGH_MISSING ? "#b4492b" : "#c8962e"} />
                   ))}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           )}
-          <p className="muted legend-note">Amber bars: {HIGH_MISSING}% or more missing.</p>
+          <p className="muted legend-note">
+            Terracotta bars: {HIGH_MISSING}% or more missing; ochre bars: below that.
+          </p>
         </div>
 
         <div>

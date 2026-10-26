@@ -44,11 +44,11 @@ export default function CategoricalCharts({ summary }) {
           <div className="two-col">
             <ResponsiveContainer width="100%" height={Math.max(220, data.length * 36)}>
               <BarChart data={data} layout="vertical" margin={{ left: 4, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e5e7eb" />
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#d6cdb9" />
                 <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12 }} />
                 <YAxis type="category" dataKey="name" width={110} tick={{ fontSize: 12 }} />
                 <Tooltip formatter={(v, _n, p) => [`${v} (${formatPercent(p.payload.percent)})`, "Count"]} />
-                <Bar dataKey="count" fill="#2563eb" radius={[0, 3, 3, 0]} barSize={18} />
+                <Bar dataKey="count" fill="#5f7a5c" radius={[0, 0, 0, 0]} barSize={18} />
               </BarChart>
             </ResponsiveContainer>
 
