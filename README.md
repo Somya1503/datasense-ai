@@ -137,18 +137,6 @@ Before submitting the project, verify:
 - Invalid input produces an appropriate error.
 - The deployed frontend can communicate with the backend.
 
-## 📹 Demo Video
-
-The demo video should demonstrate:
-
-1. Opening the live application.
-2. Uploading a sample dataset.
-3. Running the analysis.
-4. Reviewing the resulting output.
-5. Demonstrating error handling, where available.
-
-**Demo link:** *Add your publicly accessible video link here.*
-
 ## 🔮 Future Improvements
 
 Potential improvements include:
@@ -168,7 +156,4 @@ These are potential enhancements, not claims about existing functionality.
 - **Repository:** [GitHub](https://github.com/Somya1503/datasense-ai)
 - **Live application:** [Open DataSense AI](https://datasense-ai-rosy.vercel.app/)
 
-## 📄 License
-
-Add the appropriate license for your project before distributing or reusing the code. If no license has been selected, do not claim that the project is released under a particular open-source license.
 
