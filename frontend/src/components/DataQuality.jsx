@@ -63,7 +63,7 @@ function buildFindings(columns, summary) {
 
 const ICONS = { warning: AlertTriangle, info: Info, success: CheckCircle2 };
 
-export default function DataQuality({ columns, summary }) {
+export default function DataQuality({ columns, summary, hasBackendFindings = false }) {
   const findings = buildFindings(columns, summary);
 
   const withMissing = columns
@@ -79,6 +79,19 @@ export default function DataQuality({ columns, summary }) {
       subtitle="Completeness, duplicates and column types"
       icon={ShieldCheck}
     >
+      {hasBackendFindings ? (
+        <p className="pf-pointer">
+          Issues found in this dataset, with evidence and suggested next steps, are listed in{" "}
+          <button
+            type="button"
+            className="pf-chip-link"
+            onClick={() => document.getElementById("findings")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+          >
+            Quality findings
+          </button>
+          .
+        </p>
+      ) : (
       <div className="findings">
         {findings.map((f, i) => {
           const Icon = ICONS[f.level];
@@ -93,6 +106,7 @@ export default function DataQuality({ columns, summary }) {
           );
         })}
       </div>
+      )}
 
       <div className="two-col">
         <div>

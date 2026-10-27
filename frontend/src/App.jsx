@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import UploadZone from "./components/UploadZone";
 import SummaryCards from "./components/SummaryCards";
 import DataQuality from "./components/DataQuality";
+import ProfilingSuite from "./components/ProfilingSuite";
 import NumericCharts from "./components/NumericCharts";
 import CategoricalCharts from "./components/CategoricalCharts";
 import CorrelationSection from "./components/CorrelationSection";
@@ -113,7 +114,7 @@ export default function App() {
             <div className="card loading-box" aria-live="polite">
               <Loader2 className="spin" size={32} />
               <strong>Analyzing {pendingName}</strong>
-              <p className="muted">Computing statistics, correlations and outliers…</p>
+              <p className="muted">Computing statistics, column profiles, correlations and outliers…</p>
             </div>
           )}
 
@@ -132,7 +133,12 @@ export default function App() {
                 </div>
               </div>
               <SummaryCards summary={analysis.summary} meta={analysis.meta} />
-              <DataQuality columns={analysis.columns} summary={analysis.summary} />
+              <DataQuality
+                columns={analysis.columns}
+                summary={analysis.summary}
+                hasBackendFindings={Array.isArray(analysis.quality_findings) && Boolean(analysis.quality_summary)}
+              />
+              <ProfilingSuite analysis={analysis} />
               <NumericCharts stats={analysis.numeric_stats} />
               <CategoricalCharts summary={analysis.categorical_summary} />
               <CorrelationSection data={analysis.correlations} />

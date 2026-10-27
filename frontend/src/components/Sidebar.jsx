@@ -3,6 +3,8 @@ import { useState } from "react";
 const NAV = [
   { id: "overview", label: "Overview" },
   { id: "quality", label: "Data quality" },
+  { id: "profiling", label: "Data profiling" },
+  { id: "findings", label: "Quality findings" },
   { id: "numeric", label: "Numeric analysis" },
   { id: "categorical", label: "Categorical analysis" },
   { id: "correlations", label: "Correlations" },
