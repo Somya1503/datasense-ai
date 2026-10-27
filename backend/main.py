@@ -17,12 +17,19 @@ MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024  # 10 MB
 
 # Comma-separated list of allowed origins. Later, set this on Render, e.g.
 # CORS_ORIGINS=http://localhost:5173,https://your-app.vercel.app
-DEFAULT_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173"
+
+DEFAULT_ORIGINS = (
+    "http://localhost:5173,"
+    "http://127.0.0.1:5173,"
+    "https://datasense-ai-rosy.vercel.app"
+)
+
 allowed_origins = [
-    origin.strip()
+    origin.strip().rstrip("/")
     for origin in os.getenv("CORS_ORIGINS", DEFAULT_ORIGINS).split(",")
     if origin.strip()
 ]
+
 
 app = FastAPI(title="DataSense AI", version="0.1.0")
 
