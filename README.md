@@ -9,7 +9,7 @@ DataSense AI is a web application designed to help users analyze datasets and un
 - **Live application:** https://datasense-ai-rosy.vercel.app/
 - **GitHub repository:** https://github.com/Somya1503/datasense-ai
 - **Backend health check:** https://datasense-ai-api-6ad6.onrender.com/health
-- **Demo video:** *Add your demo video link here.*
+- **Demo video:** [Watch Demo Video](https://drive.google.com/file/d/12V3dyyMpR0awMVAEgfoCbjOl1B6u51hn/view?usp=sharing)
 
 ## ✨ Features
 
